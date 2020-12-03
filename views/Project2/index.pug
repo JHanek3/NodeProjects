@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  a(href="/secondProject/new") New Message
+  p
+  ul
+    each message in messages
+      li
+        p user: #{message.user}
+        p text: #{message.text}
+        p Date: #{message.added}

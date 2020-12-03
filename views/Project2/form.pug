@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1=title
+  p Welcome to the form page
+
+  form(method="post" action="/secondProject/new")
+    input(type="text", name="user", placeholder="Username")
+    <br/>
+    input(type="textarea", name="message", placeholder="Message")
+    <br/>
+    input(type="submit", value="Submit")
