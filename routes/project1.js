@@ -3,7 +3,7 @@ var router = express.Router()
 
 //Get index page for firstProject
 router.get('/', function(req, res, next) {
-  res.render('project1/index')
+  res.render('./project1/index')
 })
 
 router.get('/about', function(req, res, next) {
