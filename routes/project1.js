@@ -3,19 +3,19 @@ var router = express.Router()
 
 //Get index page for firstProject
 router.get('/', function(req, res, next) {
-  res.render('./Project1/index')
+  res.render('./project1/index')
 })
 
 router.get('/about', function(req, res, next) {
-  res.render('./Project1/about')
+  res.render('./project1/about')
 })
 
 router.get('/contact-me', function(req, res, next) {
-  res.render('./Project1/contact-me')
+  res.render('./project1/contact-me')
 })
 
 router.get('*', function(req, res) {
-  res.render('./Project1/404')
+  res.render('./project1/404')
 })
 
 module.exports = router;
