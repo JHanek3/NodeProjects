@@ -15,11 +15,11 @@ const messages = [
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('./project2/index', { title: 'Mini Messageboard', messages: messages });
+  res.render('./Project2/index', { title: 'Mini Messageboard', messages: messages });
 });
 
 router.get('/new', function(req, res, next) {
-  res.render('./project2/form', {title: "Form"})
+  res.render('./Project2/form', {title: "Form"})
 })
 
 //Post a new message
