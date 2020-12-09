@@ -1,0 +1,42 @@
+extends layout
+
+block content
+
+  h1= title
+  form(method='POST' action='')
+    div.form-group
+      label(for='name') Name:
+      input#name.form-control(type='text', placeholder='Name of the Item', name='name', value=(undefined===item ? '':item.name))
+    div.form-group
+      label(for='category') Category:
+      select#category.form(type='select', style='margin-left: 5px;' placeholder='Select category name', name='category')
+        //-Handle GET form where item.category is an object, and POST form where it is a string
+        for category in categories
+          if item
+            option(
+              value=category._id
+              selected=(
+                category._id.toString() === item.category._id
+                || category._id.toString() == item.category
+              ) ? 'selected' : false
+            ) #{category.name}
+          else
+            option(value=category._id) #{category.name}
+    div.form-group
+      label(for='description') Description:
+      input#description.form-control(type='input', placeholder='Description' name='description' value=(undefined===item ? '' : item.description))
+    div.form-group
+      label(for='price') Price:
+      input#price.form-control(type='text', placeholder='Price of an individual item', name='price', value=(undefined===item ? '': item.price))
+    div.form-group
+      label(for='stock') Stock:
+      input#stock.form-control(type='text', placeholder='How many of the item do we have', name='stock', value=(undefined===item ? '': item.stock))
+    //- div.form-group
+    //-   label(for='image') Image:
+    //-   input#image.form-control(type='file', style="height: 45px;" name='image' value=(undefined===item ? '': item.image))
+    button.btn.btn-primary(type='submit') Submit
+
+    if errors
+      ul
+        for error in errors
+          li!= error.msg

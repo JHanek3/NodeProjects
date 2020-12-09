@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var firstProjectRouter = require('./routes/project1')
 var secondProjectRouter = require('./routes/project2')
 var thirdProjectRouter = require('./routes/project3')
+var fourthProjectRouter = require('./routes/project4')
 
 var compression = require('compression')
 var helmet = require('helmet')
@@ -44,11 +45,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Setup the routers
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/firstProject', firstProjectRouter)
 app.use('/secondProject', secondProjectRouter)
 app.use('/thirdProject', thirdProjectRouter)
+app.use('/fourthProject', fourthProjectRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

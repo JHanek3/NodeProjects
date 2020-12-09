@@ -1,0 +1,26 @@
+extends layout
+
+block content
+
+  h1 #{title}: #{item.name}
+  Category: a(href=item.category.url) #{item.category.name}
+
+  p #[strong Description:] 
+    br 
+    | #{item.description}
+  p #[strong Cost:] $#{item.price}
+  p #[strong Amount:] #{item.stock}
+  
+  hr
+  p Do you really want to Delete this Item?
+  form(method='POST' action='')
+    div.form-group
+      input#id.form-control(type='hidden', name='id', required='true', value=item._id)
+    div.form-group
+      input#pwd.form-control(type='password', name='pwd', placeholder='Enter admin password' style=('width:250px;'))
+    
+    button.btn.btn-primary(type='submit') Delete
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

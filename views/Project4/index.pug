@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to your #[em Deployment HUB ] Spartan, this HUB was created using a basic Express website.
+
+  h1 Dynamic Content
+  p Here are the current categories we have ready for your disposal, feel free to add more.
+
+  ul
+    li Types of #[strong Mjolnir Powered Assault Armor:] !{data.armor_count}
+    li Types of #[strong Weapons:] !{data.weapon_count}
+    li Types of #[strong Vehicles:] !{data.vehicle_count}
+    li Types of #[strong Squads:] !{data.squad_count}
+  //- if error
+  //-   p Error getting dynamic content
+  //- else
+  //-   p The Deployment hub has the following record counts:
+
