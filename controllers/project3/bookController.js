@@ -26,7 +26,7 @@ exports.index = function(req, res) {
             Genre.countDocuments({}, callback)
         }
     }, function(err, results) {
-        res.render('./project3/index', {title: 'Local Library Home', error: err, data: results})
+        res.render('./Project3/index', {title: 'Local Library Home', error: err, data: results})
     })
 };
 
@@ -38,7 +38,7 @@ exports.book_list = function(req, res, next) {
         .exec(function (err, list_books) {
             if (err) { return next(err)}
             //successful so render
-            res.render('./project3/book_list', {title: 'Book List', book_list: list_books})
+            res.render('./Project3/book_list', {title: 'Book List', book_list: list_books})
         })
 };
 
@@ -64,7 +64,7 @@ exports.book_detail = function(req, res, next) {
             return next(err)
         }
         //Succesful so render
-        res.render('./project3/book_detail', {title: results.book.title, book: results.book, book_instances: results.book_instance})
+        res.render('./Project3/book_detail', {title: results.book.title, book: results.book, book_instances: results.book_instance})
     })
 };
 
@@ -82,7 +82,7 @@ exports.book_create_get = function(req, res, next) {
     }, function(err, results) {
         if (err) { return next(err) }
         //Succesful so render
-        res.render('./project3/book_form', { title: 'Create Book', authors: results.authors, genres: results.genres})
+        res.render('./Project3/book_form', { title: 'Create Book', authors: results.authors, genres: results.genres})
     })
 };
 
@@ -143,7 +143,7 @@ exports.book_create_post = [
                         results.genres[i].checked='true'
                     }
                 }
-                res.render('./project3/book_form', {title: 'Create Book', authors: results.authors, genres: results.genres, book: book, errors: errors.array()})
+                res.render('./Project3/book_form', {title: 'Create Book', authors: results.authors, genres: results.genres, book: book, errors: errors.array()})
             })
             return
         } else {
@@ -172,7 +172,7 @@ exports.book_delete_get = function(req, res, next) {
             res.redirect('/thirdProject/books')
         }
         //SsR
-        res.render('./project3/book_delete', {title: 'Delete Book', book: results.book, book_instances: results.book_bookinstances })
+        res.render('./Project3/book_delete', {title: 'Delete Book', book: results.book, book_instances: results.book_bookinstances })
     })
 };
 
@@ -193,7 +193,7 @@ exports.book_delete_post = function(req, res, next) {
         // Success
         if (results.book_bookinstances.length > 0) {
             // Book has book_instances. Render in same way as for GET route.
-            res.render('./project3/book_delete', { title: 'Delete Book', book: results.book, book_instances: results.book_bookinstances } );
+            res.render('./Project3/book_delete', { title: 'Delete Book', book: results.book, book_instances: results.book_bookinstances } );
             return;
         }
         else {
@@ -239,7 +239,7 @@ exports.book_update_get = function(req, res, next) {
                 }
             }
         }
-        res.render('./project3/book_form', {title: 'Update Book', authors: results.authors, genres: results.genres, book: results.book})
+        res.render('./Project3/book_form', {title: 'Update Book', authors: results.authors, genres: results.genres, book: results.book})
     })
 };
 
@@ -300,7 +300,7 @@ exports.book_update_post = [
                         results.genres[i].checked='true';
                     }
                 }
-                res.render('./project3/book_form', { title: 'Update Book',authors: results.authors, genres: results.genres, book: book, errors: errors.array() });
+                res.render('./Project3/book_form', { title: 'Update Book',authors: results.authors, genres: results.genres, book: book, errors: errors.array() });
             });
             return;
         }
