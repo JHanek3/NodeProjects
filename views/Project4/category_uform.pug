@@ -11,7 +11,7 @@ block content
       label(for='description') Description:
       input#description.form-control(type='input', placeholder='Description of Category' name='description' value=(undefined===category ? '': category.description))
     div.form-group
-        input#pwd.form-control(type='input', name='pwd', placeholder='Enter admin password' style=('width:250px;'))
+      input#pwd.form-control(type='password', name='pwd', placeholder='Enter admin password' style=('width:250px;'))
     button.btn.btn-primary(type='submit') Submit
   
   if errors

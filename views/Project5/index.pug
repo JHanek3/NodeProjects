@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to the Message Clubhouse!
+  if alerts.success
+      p #{alerts.success}
+  if user
+    p We only allow our registered users to create messages
+    a(href='/fifthProject/newmessage') Create a new message
+  else
+    p It looks like you aren't a user, please login or signup on the right
+  each msg in msg_list
+      .card
+        .card-body
+          h5.card-title #{(msg.title)}
+          if user
+            if (user.membershipStatus)
+              h9.card-title #{msg.userName} @ #{msg.timestamp_formatted}
+            else
+              h9.card-title Unknown Author
+          else
+              h9.card-title Unknown Author   
+          p
+          p.card-text #{unescape(msg.text)}
+          if user
+            if (user.adminStatus)
+              form(method='POST' action='' class='button')
+                input(type='hidden' name='id' value=msg._id)
+                button.btn.btn-danger(type='submit') Delete
+  else
+    li There are no messages

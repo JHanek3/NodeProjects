@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+  
+  form(method='POST' action='' className='signupForm')
+    div.form-group
+      label(for='username') Username: <br />
+      input#username.form-control(type='text', placeholder='Username', name='username', required)
+    div.form-group
+      label(for='password') Password: <br />
+      input#password.form-control(type='password', placeholder='Password', name='password', required)
+    button.btn.btn-primary(type='submit') Log In
+    if alerts.error
+       p.text-danger #{alerts.error}
