@@ -20,15 +20,15 @@ block content
         form(method="POST" class="loginForm")
           div.mb-3
             label.form-label(for="email" class="labels") Email Address
-            input.form-control(type="email"  name="email" aria-describedby="emailHelp")
+            input.form-control(type="email"  name="email" aria-describedby="emailHelp" required) 
             div.form-text(id="emailHelp") I'll never share your email with anyone.
-            if alert.error == "Missing credentials" || alert.error == "Email not found"
+            if alert.error == "Email not found, this is case sensitive."
               p.text-danger #{alert.error}
           div.mb-3
             label.form-label(for="password" class="labels") Password
-            input.form-control(type="password" name="password" aria-describedby="passwordHelp")
+            input.form-control(type="password" name="password" aria-describedby="passwordHelp" required)
             a.form-text(href="/sixthProject/forgot" id="passwordHelp" class="forgotPasswordLink") Forgot Password?
-            if alert.error == "Missing credentials" || alert.error == "Password incorrect"
+            if alert.error == "Password incorrect"
               p.text-danger #{alert.error}
           div.mb-3(class="formActions")
             button.btn.btn-primary(type="submit" class="theButton") Log In
