@@ -11,5 +11,5 @@ block content
       label(for='password') Password: <br />
       input#password.form-control(type='password', placeholder='Password', name='password', required)
     button.btn.btn-primary(type='submit') Log In
-    if alerts.error
-       p.text-danger #{alerts.error}
+    if alert.error
+       p.text-danger #{alert.error}

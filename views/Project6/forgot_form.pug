@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  div.theContainer
+    div.paper
+      if alert.info
+          .alert.alert-success
+            div= alert.info
+      if alert.error
+        .alert.alert-danger
+          div= alert.error
+      h1.h1Login Forgot Password
+        form(method="POST" class="forgotForm")
+          div.mb-3
+            input.form-control(type="email" name="email", placeholder="Enter the associated email address" autofocus)
+          div.mb-3
+            button.btn.btn-primary(type="submit") Reset Password

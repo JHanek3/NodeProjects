@@ -1,15 +1,11 @@
 //require models
 var User = require('../../models/project5/user')
 var Msg = require('../../models/project5/user')
-const passport = require('../../config/project5/passport')
+const passport = require('../../config/passport')
 
 var async = require('async')
 const { body, validationResult, check} = require('express-validator')
 const bcrypt = require('bcryptjs')
-
-//decode html entities
-const Entities = require('html-entities').AllHtmlEntities;
-const entities = new Entities();
 
 //GET request for user signup form
 exports.user_signup_get = function (req, res, next) {
@@ -112,7 +108,7 @@ exports.user_login_get = function (req, res, next) {
 
 //Handle for login post
 exports.user_login_post = function(req, res, next) {
-  passport.authenticate('local', {successRedirect: '/fifthProject/',
+  passport.authenticate('msgUser', {successRedirect: '/fifthProject/',
                                   successFlash: 'You are logged in!',
                                   failureRedirect: '/fifthProject/login',
                                   failureFlash: 'Incorrect Username or password'

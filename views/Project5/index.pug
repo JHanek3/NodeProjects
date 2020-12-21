@@ -3,8 +3,8 @@ extends layout
 block content
   h1= title
   p Welcome to the Message Clubhouse!
-  if alerts.success
-      p #{alerts.success}
+  if alert.success
+      p #{alert.success}
   if user
     p We only allow our registered users to create messages
     a(href='/fifthProject/newmessage') Create a new message

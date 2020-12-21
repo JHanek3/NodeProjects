@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  div.theContainer
+    div.paper
+      h1.h1Login Signup Form
+      form.row(method='POST' class="signupForm")
+        div.col-md-6(class="signCol")
+          label.form-label(for="firstName" class="labels") First Name
+          input.form-control(type="text" name="firstName" value=(undefined===user ? '': user.firstName))
+        div.col-md-6(class="signCol")
+          label.form-label(for="lastName" class="labels") Last Name
+          input.form-control(type="input" name="lastName" value=(undefined===user ? '': user.lastName))
+        div.col-12(class="signCol")
+          label.form-label(for="email" class="labels") Email
+          input.form-control(type="email" name="email" value=(undefined===user ? '': user.email))
+        div.col-12(class="signCol")
+          label.form-label(for="password" class="labels") Password
+          input.form-control(type="password" name="password")
+        div.col-12(class="signCol")
+          label.form-label(for="confirmPassword" class="labels") Confirm Password
+          input.form-control(type="password", name="confirmPassword")
+        if errors
+          div.col-12(class="signCol")
+            ul.errorList
+              for error in errors
+                li.text-danger!= error.msg
+        div.col-12(class="signCol")
+          div.formActions
+            button.btn.btn-primary(type="submit" class="theButton") Submit

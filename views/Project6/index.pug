@@ -1,0 +1,38 @@
+extends layout
+
+block content
+
+  if user
+    div.rotateContainer
+      div.scale-up-center
+        div.paper
+          p(class="welcomeP") Welcome #{user.firstName}
+          form(method="POST" action="/sixthProject/logout")
+            div.formActions
+              button.btn.btn-primary(type="submit" class="theButton2") Log Out
+  else
+    div.theContainer
+      div.paper
+        if alert.info
+          .alert.alert-success
+            div= alert.info
+        h1.h1Login Login Form
+        form(method="POST" class="loginForm")
+          div.mb-3
+            label.form-label(for="email" class="labels") Email Address
+            input.form-control(type="email"  name="email" aria-describedby="emailHelp")
+            div.form-text(id="emailHelp") I'll never share your email with anyone.
+            if alert.error == "Missing credentials" || alert.error == "Email not found"
+              p.text-danger #{alert.error}
+          div.mb-3
+            label.form-label(for="password" class="labels") Password
+            input.form-control(type="password" name="password" aria-describedby="passwordHelp")
+            a.form-text(href="/sixthProject/forgot" id="passwordHelp" class="forgotPasswordLink") Forgot Password?
+            if alert.error == "Missing credentials" || alert.error == "Password incorrect"
+              p.text-danger #{alert.error}
+          div.mb-3(class="formActions")
+            button.btn.btn-primary(type="submit" class="theButton") Log In
+        div.signupContainer
+          placeholder(class="signupP") Not a member? 
+          a(href="/sixthProject/signup" class="signupA") Signup now
+

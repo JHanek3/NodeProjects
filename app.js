@@ -13,6 +13,7 @@ var secondProjectRouter = require('./routes/project2')
 var thirdProjectRouter = require('./routes/project3')
 var fourthProjectRouter = require('./routes/project4')
 var fifthProjectRouter = require('./routes/project5')
+var sixthProjectRouter = require('./routes/project6')
 
 var compression = require('compression')
 var helmet = require('helmet')
@@ -54,10 +55,10 @@ app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }))
 app.use(passport.initialize())
 app.use(passport.session())
 
-//make messages accesible in ecery view
+//make messages accesible in every view
 app.use(function(req, res, next) {
   //before every route attach the flash messages and current user to res.locals
-  res.locals.alerts = req.flash()
+  res.locals.alert = req.flash()
   res.locals.currentUser = req.user
   next()
 })
@@ -69,6 +70,7 @@ app.use('/secondProject', secondProjectRouter)
 app.use('/thirdProject', thirdProjectRouter)
 app.use('/fourthProject', fourthProjectRouter)
 app.use('/fifthProject', fifthProjectRouter)
+app.use('/sixthProject', sixthProjectRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
