@@ -11,6 +11,9 @@ const sgMail = require('@sendgrid/mail')
 require('dotenv').config()
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
+const Entities = require('html-entities').AllHtmlEntities
+const entities = new Entities()
+
 
 
 //Get request for home page
@@ -43,6 +46,7 @@ exports.sign_up_post = [
   check('email', 'Invalid email').isEmail().trim().escape().normalizeEmail(),
   check('password')
     .isLength({min:8}).withMessage('Password must be at least 8 characters')
+    .custom(value => !/&/.test(value)).withMessage('Passwords with & are not allowed')
     .trim()
     .escape(),
   check('confirmPassword', 'Passwords do not match')
@@ -71,9 +75,11 @@ exports.sign_up_post = [
         .exec(function(err, found_email){
           if (err) {return next(err)}
           if (found_email){
+            req.flash('error', "You tried to create an account with an email that exists, did you forget your password?")
             res.redirect('/sixthProject/forgot')
           } else {
-            bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
+            let dPassword = entities.decode(req.body.password)
+            bcrypt.hash(dPassword, 10, (err, hashedPassword) => {
               if (err) {
                 return next(err)
               } else {
@@ -163,6 +169,7 @@ exports.reset_pwd_post = [
   //validate and sanitize the fields
   check('password')
     .isLength({min:8}).withMessage('Password must be at least 8 characters')
+    .custom(value => !/&/.test(value)).withMessage('Passwords with & are not allowed')
     .trim()
     .escape(),
   check('confirmPassword', 'Passwords do not match')
@@ -185,7 +192,8 @@ exports.reset_pwd_post = [
             req.flash('error', 'Password reset token is invalid or has expired.')
             return res.redirect('/sixthProject/forgot')
           } else {
-            bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
+            let dPassword = entities.decode(req.body.password)
+            bcrypt.hash(dPassword, 10, (err, hashedPassword) => {
               if (err) {
                 return next(err)
               } else {

@@ -6,7 +6,7 @@ block content
     div.rotateContainer
       div.scale-up-center
         div.paper
-          p(class="welcomeP") Welcome #{user.firstName}
+          p(class="welcomeP")!= `Welcome ${user.firstName}`
           form(method="POST" action="/sixthProject/logout")
             div.formActions
               button.btn.btn-primary(type="submit" class="theButton2") Log Out

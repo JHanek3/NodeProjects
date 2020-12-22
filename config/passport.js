@@ -4,6 +4,9 @@ const bcrypt = require('bcryptjs')
 const User = require('../models/project5/user')
 const User2 = require('../models/project6/user2')
 
+//to deal with pesky html-entities
+const Entities = require('html-entities').AllHtmlEntities
+const entities = new Entities()
 
 passport.use('msgUser',
   new LocalStrategy((username, password, done) => {
@@ -30,7 +33,8 @@ passport.use('loginUser', new LocalStrategy({
   passReqToCallback : true,
   usernameField: 'email'
   }, function(req, username, password, done) {
-    User2.findOne({ email: username}, function(err, user){
+    var dUsername = (entities.encode(username)).toLowerCase()
+    User2.findOne({ email: dUsername}, function(err, user){
       if (err) {return done(err)}
       if (!user) {
         return done(null, false, req.flash("error", "Email not found, this is case sensitive.") )
