@@ -18,7 +18,7 @@ exports.user_signup_post = [
   body('firstName', 'First name must contain at least 2 characters').trim().isLength({ min:2}).escape(),
   body('lastName', 'Last name must contain at least 2 characters').trim().isLength({ min:2}).escape(),
   body('userName', 'Username must contain at least 2 characters').trim().isLength({ min:2}).escape(),
-  body('password', 'Password must contain at least 5 characters').trim().isLength({ min:2}).escape(),
+  body('password', 'Password must contain at least 5 characters').trim().isLength({ min:5}).escape(),
   //Check if passwords are the same
   check('password').exists(),
   check('confirmPassword', 'Password confirmation field must have the same value as the password field')
